@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+openai
+loguru
+pathlib
+urllib3
