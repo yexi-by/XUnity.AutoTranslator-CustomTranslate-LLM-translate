@@ -1,0 +1,100 @@
+# 私密配置文件
+config.yaml
+config.json
+.env
+*.env
+.env.local
+.env.production
+.env.staging
+.env.development
+
+# API密钥和敏感信息
+api_keys.txt
+secrets.txt
+*.key
+*.pem
+*.crt
+
+# Python缓存和编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# 虚拟环境
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# 日志文件
+*.log
+logs/
+log/
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# 临时文件
+*.tmp
+*.temp
+temp/
+tmp/
+
+# 备份文件
+*.bak
+*.backup
+*.old
+
+# 用户自定义的提示词文件（如果包含敏感内容）
+custom_prompt.txt
+user_prompt.txt
+
+# 测试文件和临时脚本
+test_*.py
+temp_*.py
+debug_*.py
