@@ -39,7 +39,12 @@ api_key: "your-api-key"       # 你的 API 密钥
 3. 在 XUnity.AutoTranslator 的配置文件中添加翻译服务地址：
    ```ini
    [Service]
-   Endpoint=http://localhost:8000/?from={0}&to={1}&text={2}
+   Endpoint=CustomTranslate
+   ........
+   [Custom]
+   Url=http://localhost:8000/
+   EnableShortDelay=True
+   DisableSpamChecks=True
    ```
 
 ## 🪵 日志与排错
