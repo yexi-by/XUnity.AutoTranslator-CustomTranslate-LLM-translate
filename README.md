@@ -1,42 +1,55 @@
-# OpenAI Unity Translator
+# 🧠 XUnity.AutoTranslator-CustomTranslate-LLM-translate
 
-基于 FastAPI 和 OpenAI 兼容模型的 Unity 游戏翻译后端，为 XUnity.AutoTranslator 提供串行翻译支持。
+这是一个基于 **[XUnity.AutoTranslator](https://github.com/bbepis/XUnity.AutoTranslator)** 修改的翻译后端，使用大语言模型（目前支持 DeepSeek）为 Unity 游戏提供高质量翻译服务。
 
-## 功能亮点
-- 修改版 XUnity.AutoTranslator，原生支持串行请求，避免限流和乱序。
-- 统一的 RESTful API，兼容 DeepSeek、ChatGPT 等大模型服务。
-- 针对游戏文本优化的提示词与自动 JSON 输出。
-- 完整日志记录，便于排查问题。
+## 📌 项目说明
 
-## 快速开始
-1. 安装环境：Python 3.7+，并准备可使用 XUnity.AutoTranslator 的 Unity 游戏。
-2. 安装依赖：运行 `install.bat` 或 `pip install -r requirements.txt`。
-3. 配置服务：编辑 `config.yaml`，填写 `model_name`、`base_url`、`api_key` 等信息。
-4. 启动接口：
-   - 推荐：`run.bat`（自动检查依赖与配置）。
-   - 已配置环境：`start.bat` 或 `python -m uvicorn main:app --host 0.0.0.0 --port 8000`。
+- 本人仅修改了 **XUnity.AutoTranslator** 的部分源码，用于支持 **并行翻译请求**。原版只支持串行翻译，在界面多元素时速度较慢，修改后在使用 LLM 接口进行翻译时速度有显著提升。
+- **关于 XUnity.AutoTranslator 的其他问题，请自行查阅其[官网文档](https://github.com/bbepis/XUnity.AutoTranslator)**。
+- 本项目仅提供与大语言模型接口相关的翻译服务与启动脚本。
 
-## 修改版 XUnity.AutoTranslator
-1. 从 `XUnity.AutoTranslator/` 目录选择与你游戏匹配的压缩包（BepInEx、MelonMod、IPA 等）。
-2. 解压至游戏目录，并在配置文件的 `[Service]` 段落设置：
-   ```
+## ⚙️ 配置说明
+
+编辑 `config.yaml` 来配置大语言模型接口（当前仅支持 DeepSeek）：
+
+```yaml
+model_name: "deepseek-chat"    # 模型名称
+base_url: "https://api.deepseek.com"  # API 基础 URL
+api_key: "your-api-key"       # 你的 API 密钥
+```
+
+> 后续可根据需求支持更多模型。
+
+## 🚀 启动方式
+
+1. **双击** `install_requirements.bat`  安装依赖  
+2. **双击** `run.bat`  启动翻译服务  
+
+⚠️ **注意事项**：  
+- 8000 端口不能与其他程序冲突。  
+- 翻译 API 的调用地址默认是：
+  ```
+  http://localhost:8000/?from={0}&to={1}&text={2}
+  ```
+
+## 🧩 XUnity.AutoTranslator 使用说明
+
+1. 使用本项目自带的修改版 `XUnity.AutoTranslator`（不要使用原版）。  
+2. 解压对应版本（BepInEx / MelonMod / IL2CPP / IPA）到游戏目录。  
+3. 在 XUnity.AutoTranslator 的配置文件中添加翻译服务地址：
+   ```ini
+   [Service]
    Endpoint=http://localhost:8000/?from={0}&to={1}&text={2}
    ```
-3. 必须使用本项目提供的修改版以确保串行请求生效。
 
-## API 调用
-- 请求：`GET /?from=源语言&to=目标语言&text=待翻译文本`（`text` 需 URL 编码）。
-- 响应：返回翻译后的纯文本。
+## 🪵 日志与排错
 
-## 实用脚本
-- `run.bat`：一键检查依赖并启动服务。
-- `start.bat`：直接启动已配置的服务。
-- `install.bat`：单独安装或更新依赖。
+- 服务启动后，控制台会输出翻译请求与状态日志。  
+- 如遇限流或错误，请检查 API Key、端口冲突或 DeepSeek 配额。
 
-## 注意事项
-- 确认 API Key 额度充足，并按服务商要求控制请求频率。
-- 运行日志会输出请求、完成状态与错误信息，可用于排查。
+## 📝 许可证
 
-## 许可与贡献
-- 许可：MIT。
-- 欢迎通过 Issue 或 PR 参与改进。
+本项目基于 **MIT License** 开源。  
+
+👉 项目地址：[GitHub - XUnity.AutoTranslator-CustomTranslate-LLM-translate](https://github.com/yexi-by/XUnity.AutoTranslator-CustomTranslate-LLM-translate)  
+👉 原项目地址：[XUnity.AutoTranslator](https://github.com/bbepis/XUnity.AutoTranslator)
